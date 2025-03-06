@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swensi - Фильмы и сериалы</title>
+    <meta name="description" content="Swensi - ваш путеводитель в мире кино. Смотрите трейлеры, узнавайте о новинках и находите любимые фильмы.">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo"></a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Поиск фильмов по названию...">
+                <button id="searchButton">Найти</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h2>Сейчас в тренде</h2>
+            <div class="movies-grid" id="trendingNowContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка фильмов...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Популярные фильмы</h2>
+            <div class="movies-grid" id="popularMoviesContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка фильмов...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Смотрят сейчас</h2>
+            <div class="movies-grid" id="nowPlayingContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка фильмов...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Лучшие сериалы</h2>
+            <div class="movies-grid" id="topTVShowsContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка сериалов...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Лучшие мультфильмы</h2>
+            <div class="movies-grid" id="animatedMoviesContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка мультфильмов...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Новинки аниме</h2>
+            <div class="movies-grid" id="animeContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка аниме...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Топ 2024</h2>
+            <div class="movies-grid" id="top2024Container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка фильмов...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Ожидаемые в 2025</h2>
+            <div class="movies-grid" id="top2025Container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка фильмов...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка информации...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Swensi. Все права защищены.</p>
+            <p>Данные предоставлены The Movie Database (TMDB)</p>
+        </div>
+    </footer>
+
+    <script src="static/js/script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swensi - Фильмы и сериалы</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/movie.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo"></a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Поиск фильмов по названию...">
+                <button id="searchButton">Найти</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="movie-page">
+        <div class="movie-backdrop">
+            <div class="backdrop-overlay"></div>
+        </div>
+
+        <div class="movie-content">
+            <div class="movie-poster-container">
+                <div class="movie-poster-wrapper">
+                    <img src="" alt="" class="movie-poster-large" id="moviePoster">
+                </div>
+            </div>
+
+            <div class="movie-info-container">
+                <h1 class="movie-title" id="movieTitle"></h1>
+                
+                <div class="movie-meta">
+                    <span class="release-date" id="releaseDate"></span>
+                    <span class="runtime" id="runtime"></span>
+                    <span class="rating" id="rating"></span>
+                </div>
+
+                <div class="movie-tagline" id="tagline"></div>
+                
+                <div class="movie-overview">
+                    <h2>Описание</h2>
+                    <p id="overview"></p>
+                </div>
+
+                <div class="movie-details">
+                    <div class="detail-row">
+                        <h2>Информация</h2>
+                        <div class="details-grid" id="movieDetails"></div>
+                    </div>
+                </div>
+
+                <div class="trailer-section">
+                    <h2>Трейлер</h2>
+                    <div class="trailer-container" id="trailerContainer"></div>
+                </div>
+
+                <div class="cast-section">
+                    <h2>В ролях</h2>
+                    <div class="cast-grid" id="castGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="similar-movies">
+            <h2>Похожие фильмы</h2>
+            <div class="movies-grid" id="similarMovies"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Swensi. Все права защищены.</p>
+            <p>Данные предоставлены The Movie Database (TMDB)</p>
+        </div>
+    </footer>
+
+    <script src="static/js/movie.js"></script>
+</body>
+</html> 
