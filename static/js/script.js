@@ -8,7 +8,7 @@ const fetchOptions = {
     method: 'GET',
     headers: {
         'accept': 'application/json',
-        'Authorization': `Bearer ${CONFIG.API_TOKEN}`
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDdmZTFlZjczNTkwZTY2NTg1OGMyMjYwYzQ1ZjYwYiIsIm5iZiI6MTczMjEyNDAxNy41ODYsInN1YiI6IjY3M2UxZDcxMDRjNmIyMGM3NDZmMDY4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c7leSyPfcpenR82ViQ29ETTA3fmNo5xaOrplBaaSuAE'
     }
 };
 
