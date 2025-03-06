@@ -158,7 +158,7 @@ function createMovieCard(movie) {
 
     // Добавляем обработчик клика для перехода на страницу фильма
     card.addEventListener('click', () => {
-        window.location.href = `/movie/${movie.id}`;
+        window.location.href = `movie.html?id=${movie.id}`;
     });
 
     return card;

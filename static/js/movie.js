@@ -10,8 +10,8 @@ const fetchOptions = {
     }
 };
 
-// Получаем ID фильма из URL
-const movieId = window.location.pathname.split('/').pop();
+// Получаем ID фильма из URL параметров
+const movieId = new URLSearchParams(window.location.search).get('id');
 
 // Функция для форматирования даты
 function formatDate(dateStr) {
@@ -204,7 +204,7 @@ async function loadMovieDetails() {
 
         const similarContainer = document.getElementById('similarMovies');
         similarContainer.innerHTML = similarMovies.map(movie => `
-            <div class="movie-card" onclick="window.location.href='/movie/${movie.id}'">
+            <div class="movie-card" onclick="window.location.href='movie.html?id=${movie.id}'">
                 <img
                     src="${movie.poster_path 
                         ? `${CONFIG.IMAGE_BASE_URL}/w500${movie.poster_path}`
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', loadMovieDetails);
 document.getElementById('searchButton').addEventListener('click', () => {
     const query = document.getElementById('searchInput').value.trim();
     if (query) {
-        window.location.href = `/?search=${encodeURIComponent(query)}`;
+        window.location.href = `index.html?search=${encodeURIComponent(query)}`;
     }
 });
 
@@ -277,7 +277,7 @@ document.getElementById('searchInput').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         const query = e.target.value.trim();
         if (query) {
-            window.location.href = `/?search=${encodeURIComponent(query)}`;
+            window.location.href = `index.html?search=${encodeURIComponent(query)}`;
         }
     }
 });
