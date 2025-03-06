@@ -1,14 +1,19 @@
-const API_KEY = 'f07fe1ef73590e66585c2260c45f60b';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
-const ITEMS_PER_SECTION = 18;
+// Константы API
+const CONFIG = {
+    API_KEY: 'f07fe1ef73590e66585c2260c45f60b',
+    API_TOKEN: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDdmZTFlZjczNTkwZTY2NTg1OGMyMjYwYzQ1ZjYwYiIsIm5iZiI6MTczMjEyNDAxNy41ODYsInN1YiI6IjY3M2UxZDcxMDRjNmIyMGM3NDZmMDY4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c7leSyPfcpenR82ViQ29ETTA3fmNo5xaOrplBaaSuAE',
+    BASE_URL: 'https://api.themoviedb.org/3',
+    IMAGE_BASE_URL: 'https://image.tmdb.org/t/p',
+    DEFAULT_LANGUAGE: 'ru',
+    ITEMS_PER_SECTION: 18
+};
 
 // Конфигурация для fetch запросов
 const fetchOptions = {
     method: 'GET',
     headers: {
         'accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDdmZTFlZjczNTkwZTY2NTg1OGMyMjYwYzQ1ZjYwYiIsIm5iZiI6MTczMjEyNDAxNy41ODYsInN1YiI6IjY3M2UxZDcxMDRjNmIyMGM3NDZmMDY4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c7leSyPfcpenR82ViQ29ETTA3fmNo5xaOrplBaaSuAE'
+        'Authorization': `Bearer ${CONFIG.API_TOKEN}`
     }
 };
 
@@ -77,7 +82,7 @@ async function loadNewAnime() {
 async function loadTop2024() {
     try {
         const response = await fetch(
-            `${BASE_URL}/discover/movie?language=ru&primary_release_year=2024&sort_by=vote_average.desc&vote_count.gte=100&vote_average.gte=7`,
+            `${CONFIG.BASE_URL}/discover/movie?language=ru&primary_release_year=2024&sort_by=vote_average.desc&vote_count.gte=100&vote_average.gte=7`,
             fetchOptions
         );
         const data = await response.json();
@@ -86,7 +91,7 @@ async function loadTop2024() {
         const filteredMovies = data.results
             .filter(movie => movie.vote_count >= 100 && movie.vote_average >= 7)
             .sort((a, b) => b.vote_average - a.vote_average)
-            .slice(0, ITEMS_PER_SECTION);
+            .slice(0, CONFIG.ITEMS_PER_SECTION);
 
         // Добавляем специальный класс для высокого рейтинга
         const moviesWithHighlight = filteredMovies.map(movie => ({
@@ -102,7 +107,7 @@ async function loadTop2024() {
 }
 
 async function loadTop2025() {
-    const data = await fetchData(`${BASE_URL}/discover/movie?language=ru&primary_release_year=2025&sort_by=popularity.desc`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/discover/movie?language=ru&primary_release_year=2025&sort_by=popularity.desc`);
     displayMovies(data, 'top2025Container');
 }
 
@@ -139,7 +144,7 @@ function createMovieCard(movie) {
     card.className = `movie-card ${movie.isHighRated ? 'high-rated' : ''}`;
 
     const posterPath = movie.poster_path
-        ? `${IMAGE_BASE_URL}/w500${movie.poster_path}`
+        ? `${CONFIG.IMAGE_BASE_URL}/w500${movie.poster_path}`
         : 'https://via.placeholder.com/500x750?text=Нет+постера';
 
     const ratingClass = movie.vote_average >= 8 ? 'rating-high' : 
@@ -168,7 +173,7 @@ function createMovieCard(movie) {
 async function showMovieDetails(movie) {
     try {
         const response = await fetch(
-            `${BASE_URL}/movie/${movie.id}?append_to_response=videos,credits&language=ru`,
+            `${CONFIG.BASE_URL}/movie/${movie.id}?append_to_response=videos,credits&language=ru`,
             fetchOptions
         );
         const movieDetails = await response.json();
@@ -254,7 +259,7 @@ async function searchMovies(query) {
         `;
 
         const response = await fetch(
-            `${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&language=ru`,
+            `${CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}&language=ru`,
             fetchOptions
         );
         const data = await response.json();
@@ -265,7 +270,7 @@ async function searchMovies(query) {
         
         // Отображаем результаты
         if (data.results && data.results.length > 0) {
-            displayMovies(data.results.slice(0, ITEMS_PER_SECTION), 'searchResultsContainer');
+            displayMovies(data.results.slice(0, CONFIG.ITEMS_PER_SECTION), 'searchResultsContainer');
         } else {
             searchContainer.innerHTML = '<p class="no-results">По вашему запросу ничего не найдено</p>';
         }
