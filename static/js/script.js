@@ -1,6 +1,6 @@
 // Константы API
 const CONFIG = {
-    API_KEY: 'f07fe1ef73590e66585c2260c45f60b',
+    API_KEY: 'f07fe1ef73590e66585c2260c45f60bb',
     API_TOKEN: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDdmZTFlZjczNTkwZTY2NTg1OGMyMjYwYzQ1ZjYwYiIsIm5iZiI6MTczMjEyNDAxNy41ODYsInN1YiI6IjY3M2UxZDcxMDRjNmIyMGM3NDZmMDY4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c7leSyPfcpenR82ViQ29ETTA3fmNo5xaOrplBaaSuAE',
     BASE_URL: 'https://api.themoviedb.org/3',
     IMAGE_BASE_URL: 'https://image.tmdb.org/t/p',
