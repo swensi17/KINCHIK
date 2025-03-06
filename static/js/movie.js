@@ -6,7 +6,7 @@ const fetchOptions = {
     method: 'GET',
     headers: {
         'accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDdmZTFlZjczNTkwZTY2NTg1OGMyMjYwYzQ1ZjYwYiIsIm5iZiI6MTczMjEyNDAxNy41ODYsInN1YiI6IjY3M2UxZDcxMDRjNmIyMGM3NDZmMDY4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c7leSyPfcpenR82ViQ29ETTA3fmNo5xaOrplBaaSuAE'
+        'Authorization': `Bearer ${CONFIG.API_TOKEN}`
     }
 };
 
@@ -83,7 +83,7 @@ function getAgeRating(movie) {
 async function loadMovieDetails() {
     try {
         const response = await fetch(
-            `${BASE_URL}/movie/${movieId}?append_to_response=credits,videos,similar,external_ids,release_dates&language=ru`,
+            `${CONFIG.BASE_URL}/movie/${movieId}?append_to_response=credits,videos,similar,external_ids,release_dates&language=${CONFIG.DEFAULT_LANGUAGE}`,
             fetchOptions
         );
         const movie = await response.json();
@@ -91,12 +91,12 @@ async function loadMovieDetails() {
         // Устанавливаем фоновое изображение
         const backdrop = document.querySelector('.movie-backdrop');
         if (movie.backdrop_path) {
-            backdrop.style.backgroundImage = `url(${IMAGE_BASE_URL}/original${movie.backdrop_path})`;
+            backdrop.style.backgroundImage = `url(${CONFIG.IMAGE_BASE_URL}/original${movie.backdrop_path})`;
         }
 
         // Устанавливаем постер
         const posterPath = movie.poster_path
-            ? `${IMAGE_BASE_URL}/w500${movie.poster_path}`
+            ? `${CONFIG.IMAGE_BASE_URL}/w500${movie.poster_path}`
             : 'https://via.placeholder.com/500x750?text=Нет+постера';
         document.getElementById('moviePoster').src = posterPath;
         document.getElementById('moviePoster').alt = movie.title;
@@ -185,7 +185,7 @@ async function loadMovieDetails() {
             <div class="cast-card">
                 <img
                     src="${actor.profile_path 
-                        ? `${IMAGE_BASE_URL}/w185${actor.profile_path}`
+                        ? `${CONFIG.IMAGE_BASE_URL}/w185${actor.profile_path}`
                         : 'https://via.placeholder.com/185x278?text=Нет+фото'}"
                     alt="${actor.name}"
                     class="cast-photo"
@@ -207,7 +207,7 @@ async function loadMovieDetails() {
             <div class="movie-card" onclick="window.location.href='/movie/${movie.id}'">
                 <img
                     src="${movie.poster_path 
-                        ? `${IMAGE_BASE_URL}/w500${movie.poster_path}`
+                        ? `${CONFIG.IMAGE_BASE_URL}/w500${movie.poster_path}`
                         : 'https://via.placeholder.com/500x750?text=Нет+постера'}"
                     alt="${movie.title}"
                     class="movie-poster"

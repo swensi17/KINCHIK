@@ -8,7 +8,7 @@ const fetchOptions = {
     method: 'GET',
     headers: {
         'accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDdmZTFlZjczNTkwZTY2NTg1OGMyMjYwYzQ1ZjYwYiIsIm5iZiI6MTczMjEyNDAxNy41ODYsInN1YiI6IjY3M2UxZDcxMDRjNmIyMGM3NDZmMDY4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c7leSyPfcpenR82ViQ29ETTA3fmNo5xaOrplBaaSuAE'
+        'Authorization': `Bearer ${CONFIG.API_TOKEN}`
     }
 };
 
@@ -36,7 +36,7 @@ async function fetchData(url) {
     try {
         const response = await fetch(url, fetchOptions);
         const data = await response.json();
-        return data.results.slice(0, ITEMS_PER_SECTION);
+        return data.results.slice(0, CONFIG.ITEMS_PER_SECTION);
     } catch (error) {
         console.error('Ошибка при загрузке данных:', error);
         return [];
@@ -45,32 +45,32 @@ async function fetchData(url) {
 
 // Функции для загрузки разных категорий
 async function loadTrendingNow() {
-    const data = await fetchData(`${BASE_URL}/trending/movie/day?language=ru`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/trending/movie/day?language=${CONFIG.DEFAULT_LANGUAGE}`);
     displayMovies(data, 'trendingNowContainer');
 }
 
 async function loadPopularMovies() {
-    const data = await fetchData(`${BASE_URL}/movie/popular?language=ru`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/movie/popular?language=${CONFIG.DEFAULT_LANGUAGE}`);
     displayMovies(data, 'popularMoviesContainer');
 }
 
 async function loadNowPlaying() {
-    const data = await fetchData(`${BASE_URL}/movie/now_playing?language=ru`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/movie/now_playing?language=${CONFIG.DEFAULT_LANGUAGE}`);
     displayMovies(data, 'nowPlayingContainer');
 }
 
 async function loadTopTVShows() {
-    const data = await fetchData(`${BASE_URL}/tv/top_rated?language=ru`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/tv/top_rated?language=${CONFIG.DEFAULT_LANGUAGE}`);
     displayMovies(data, 'topTVShowsContainer');
 }
 
 async function loadAnimatedMovies() {
-    const data = await fetchData(`${BASE_URL}/discover/movie?language=ru&with_genres=16`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/discover/movie?language=${CONFIG.DEFAULT_LANGUAGE}&with_genres=16`);
     displayMovies(data, 'animatedMoviesContainer');
 }
 
 async function loadNewAnime() {
-    const data = await fetchData(`${BASE_URL}/discover/movie?language=ru&with_genres=16&with_keywords=210024`);
+    const data = await fetchData(`${CONFIG.BASE_URL}/discover/movie?language=${CONFIG.DEFAULT_LANGUAGE}&with_genres=16&with_keywords=210024`);
     displayMovies(data, 'animeContainer');
 }
 
